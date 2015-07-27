@@ -96,6 +96,15 @@ angular
       .state('dashboard.form',{
         templateUrl:'partials/form.html',
         url:'/form'
+
+    }).state('dashboard.sampleForm',{
+        templateUrl:'partials/SampleForm.html',
+        url:'/sampleForm'
+
+    }).state('dashboard.candidate',{
+        templateUrl:'partials/Candidate.html',
+        url:'/candidate'
+
     })
       .state('dashboard.blank',{
         templateUrl:'partials/pages/blank.html',

@@ -81,3 +81,11 @@ body {
 text-decoration: none;
 background-color: #eee;
 }
+
+.bottomspacer {
+  margin-bottom: 15px
+}
+
+.displayinline{
+  display: inline-block;
+}

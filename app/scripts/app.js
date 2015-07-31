@@ -18,11 +18,41 @@ angular
     
     $ocLazyLoadProvider.config({
       debug:false,
-      events:true,
+      events:true
     });
 
-    $urlRouterProvider.otherwise('/dashboard/home');
+    $urlRouterProvider.otherwise('/login/guestHome');
 
+    $stateProvider
+        .state('login', {
+            url:'/login',
+            templateUrl: 'partials/login/main.html',
+            resolve: {
+                loadMyDirectives:function($ocLazyLoad){
+                    return $ocLazyLoad.load(
+                        {
+                            name:'sbAdminApp',
+                            files:[
+                                'scripts/directives/header/header.js',
+                                'scripts/directives/sidebar/sidebar.js',
+                                'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
+                            ]
+                        })
+
+                }
+            }
+        })
+        .state('login.guestHome', {
+            url:'/guestHome',
+            templateUrl: 'partials/login/guestHome.html'
+
+        })
+        .state('login.joinUs', {
+            url:'/joinUs',
+            templateUrl: 'partials/login/joinUs.html',
+            controller:""
+
+        })
     $stateProvider
       .state('dashboard', {
         url:'/dashboard',
@@ -97,22 +127,74 @@ angular
         templateUrl:'partials/form.html',
         url:'/form'
 
+    }).state('initWizard',{
+        templateUrl:'partials/init-wizard/firstLoginWizard.html',
+        url:'/wizard',
+        resolve: {
+            loadMyDirectives:function($ocLazyLoad){
+                return $ocLazyLoad.load(
+                    {
+                        name:'sbAdminApp',
+                        files:[
+                            'scripts/directives/header/header.js',
+                            'scripts/directives/header/header-notification/header-notification.js',
+                            'scripts/directives/sidebar/sidebar.js',
+                            'scripts/directives/sidebar/sidebar-search/sidebar-search.js'
+                        ]
+                    }),
+                    $ocLazyLoad.load(
+                        {
+                            name:'toggle-switch',
+                            files:["bower_components/angular-toggle-switch/angular-toggle-switch.min.js",
+                                "bower_components/angular-toggle-switch/angular-toggle-switch.css"
+                            ]
+                        }),
+                    $ocLazyLoad.load(
+                        {
+                            name:'ngAnimate',
+                            files:['bower_components/angular-animate/angular-animate.js']
+                        })
+                $ocLazyLoad.load(
+                    {
+                        name:'ngCookies',
+                        files:['bower_components/angular-cookies/angular-cookies.js']
+                    })
+                $ocLazyLoad.load(
+                    {
+                        name:'ngResource',
+                        files:['bower_components/angular-resource/angular-resource.js']
+                    })
+                $ocLazyLoad.load(
+                    {
+                        name:'ngSanitize',
+                        files:['bower_components/angular-sanitize/angular-sanitize.js']
+                    })
+                $ocLazyLoad.load(
+                    {
+                        name:'ngTouch',
+                        files:['bower_components/angular-touch/angular-touch.js']
+                    })
+            }
+        }
+    }).state('initWizard.step1',{
+        templateUrl:'partials/init-wizard/step1.html',
+        url:'/step1'
     }).state('dashboard.sampleForm',{
         templateUrl:'partials/SampleForm.html',
         url:'/sampleForm'
 
-    }).state('dashboard.candidate',{
-        templateUrl:'partials/Candidate.html',
-        url:'/candidate'
+    }).state('dashboard.register',{
+        templateUrl:'partials/jobseeker/register.html',
+        url:'/register'
+
+    }).state('dashboard.jobsearch',{
+        templateUrl:'partials/jobseeker/jobsearch.html',
+        url:'/jobsearch'
 
     })
       .state('dashboard.blank',{
         templateUrl:'partials/pages/blank.html',
         url:'/blank'
-    })
-      .state('login',{
-        templateUrl:'partials/pages/login.html',
-        url:'/login'
     })
       .state('dashboard.chart',{
         templateUrl:'partials/chart.html',

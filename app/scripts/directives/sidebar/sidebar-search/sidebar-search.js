@@ -19,4 +19,15 @@ angular.module('sbAdminApp')
         $scope.selectedMenu = 'home';
       }
     }
+  }).directive('guestSidebarSearch',function() {
+    return {
+      templateUrl:'scripts/directives/sidebar/sidebar-search/guest-sidebar-search.html',
+      restrict: 'E',
+      replace: true,
+      scope: {
+      },
+      controller:function($scope){
+        $scope.selectedMenu = 'home';
+      }
+    }
   });

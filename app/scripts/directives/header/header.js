@@ -13,6 +13,12 @@ angular.module('sbAdminApp')
         restrict: 'E',
         replace: true,
     	}
+	}).directive('guestHeader',function(){
+		return {
+        templateUrl:'scripts/directives/header/guestHeader.html',
+        restrict: 'E',
+        replace: true,
+    	}
 	});
 
 
